@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Пример страницы с картинкой, текстом и формой</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .product-image {
+        width: 200px;
+        height: 200px;
+      }
+
+      .buy-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+      }
+
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        width: 300px;
+        height: 300px; /* Добавлено для квадратной формы */
+      }
+
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="product">
+      <img
+        class="product-image"
+        src="https://forklog.com/wp-content/uploads/cosmos2-min.webp"
+        alt="Product Image"
+      />
+      <p>Текст о продукте здесь.</p>
+      <button class="buy-button" onclick="showForm()">Купить</button>
+    </div>
+
+    <div class="modal" id="modal" onclick="hideForm()">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-button" onclick="hideForm()">&times;</span>
+        <form>
+          <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" required />
+          </div>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function showForm() {
+        var modal = document.getElementById('modal');
+        modal.style.display = 'flex';
+      }
+
+      function hideForm() {
+        var modal = document.getElementById('modal');
+        modal.style.display = 'none';
+      }
+    </script>
+  </body>
+</html>
