@@ -87,6 +87,7 @@
             <label for="phone">Телефон:</label>
             <input type="tel" id="phone" required />
           </div>
+          <div id="usercard"></div>
           <button id="order" type="submit">Отправить</button>
         </form>
       </div>
@@ -108,6 +109,18 @@
         let modal = document.getElementById('modal');
         modal.style.display = 'none';
       }
+      let usercard = document.getElementById('usercard'); //получаем блок usercard
+
+      let profName = document.createElement('p'); //создаем параграф
+      profName.innerText = `${tg.initDataUnsafe.user.first_name}
+        ${tg.initDataUnsafe.user.last_name}
+        ${tg.initDataUnsafe.user.username} (${tg.initDataUnsafe.user.language_code})`;
+      //выдем имя, "фамилию", через тире username и код языка
+      usercard.appendChild(profName); //добавляем
+
+      let userid = document.createElement('p'); //создаем еще параграф
+      userid.innerText = `${tg.initDataUnsafe.user.id}`; //показываем user_id
+      usercard.appendChild(userid); //добавляем
 
       order.addEventListener('click', () => {
         tg.close();
