@@ -68,7 +68,7 @@
         alt="Product Image"
       />
       <p>Текст о продукте здесь.</p>
-      <button class="buy-button" onclick="showForm()">Купить</button>
+      <button id="buy" class="buy-button">Купить</button>
     </div>
 
     <div class="modal" id="modal" onclick="hideForm()">
@@ -87,21 +87,31 @@
             <label for="phone">Телефон:</label>
             <input type="tel" id="phone" required />
           </div>
-          <button type="submit">Отправить</button>
+          <button id="order" type="submit">Отправить</button>
         </form>
       </div>
     </div>
 
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-      function showForm() {
-        var modal = document.getElementById('modal');
-        modal.style.display = 'flex';
-      }
+      let tg = window.Telegram.WebApp;
+      let buy = document.getElementById('buy');
+      let order = document.getElementById('order');
+
+      buy.addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'flex';
+        document.getElementById('name').value =
+          tg.initDataUnsafe.user.first_name;
+      });
 
       function hideForm() {
-        var modal = document.getElementById('modal');
+        let modal = document.getElementById('modal');
         modal.style.display = 'none';
       }
+
+      order.addEventListener('click', () => {
+        tg.close();
+      });
     </script>
   </body>
 </html>
