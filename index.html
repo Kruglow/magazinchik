@@ -117,6 +117,18 @@
         ${tg.initDataUnsafe.user.username} (${tg.initDataUnsafe.user.language_code}) ${tg.initDataUnsafe.user.id}`;
 
       order.addEventListener('click', () => {
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let phone = document.getElementById('phone').value;
+
+        let data = {
+          name: name,
+          email: email,
+          phone: phone,
+        };
+
+        tg.sendData(JSON.stringify(data));
+
         tg.close();
       });
     </script>
